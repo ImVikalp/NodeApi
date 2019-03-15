@@ -1,6 +1,5 @@
 const express = require('express');
 const logger = require('morgan');
-const products = require('./routes/products');
 const category = require('./routes/category');
 const post = require('./routes/post');
 const users = require('./routes/users');
@@ -22,7 +21,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/users', users);
 
 // private route
-app.use('/products', validateUser, products);
 app.use('/category', validateUser, category);
 app.use('/post', validateUser, post);
 

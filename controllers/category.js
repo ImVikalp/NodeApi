@@ -6,28 +6,28 @@ module.exports = {
 	create: function(req, res, next) {
 
 		categoryModel.create({ name: req.body.name, description: req.body.description, userId: req.body.userId}, function (err, result) {
-				  if (err) 
-				  	next(err);
-				  else
-				  	res.json({status: "success", message: "Category added successfully!!!", data: null});
+			if (err) 
+				next(err);
+			else
+				res.json({status: "success", message: "Category added successfully!!!", data: null});
 				  
-				});
+			});
 	},
 
 	getById: function(req, res, next) {
 
 		let categoryList = [];
 
-		var	user = {}
-		userModel.findById(req.body.userId, function(err, userInfo){
-			if (err) {
-				next(err);
-			} else { 
+					var	user = {}
+					userModel.findById(req.body.userId, function(err, userInfo){
+						if (err) {
+							next(err);
+						} else { 
 
-				user= userInfo
-			
-			}
-		});
+							user= userInfo
+						
+						}
+					});
 
 	
 		categoryModel.findById(req.params.categoryId, function(err, categoryInfo){
@@ -59,6 +59,7 @@ module.exports = {
 		});
 	},
 
+
 	deleteById: function(req, res, next) {
 		categoryModel.findByIdAndRemove(req.params.categoryId, function(err, categoryInfo){
 			if(err)
@@ -68,20 +69,21 @@ module.exports = {
 			}
 		});
 	},
+	
 
 	getAll: function(req, res, next) {
 		let categoriesList = [];
 
-		var	user = {}
-		userModel.findById(req.body.userId, function(err, userInfo){
-			if (err) {
-				next(err);
-			} else { 
+				var	user = {}
+				userModel.findById(req.body.userId, function(err, userInfo){
+					if (err) {
+						next(err);
+					} else { 
 
-				user= userInfo
-			
-			}
-		});
+						user= userInfo
+					
+					}
+				});
 
 		categoryModel.find({}, function(err, categories){
 			if (err){
